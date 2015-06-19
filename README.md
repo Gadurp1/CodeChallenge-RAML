@@ -2,7 +2,7 @@
 
 ## RAML
 
-This code challenge API is written in [RAML] (http://raml.org/)
+This code challenge API documentation is written in [RAML] (http://raml.org/)
 
 ## Challenge
 
