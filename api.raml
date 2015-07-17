@@ -3,6 +3,272 @@ baseUri: http://challengers.orainteractive.com/
 title: CodeChallenge
 version: v1
 mediaType: application/json
+/users:
+  description: |
+    Use the POST call to register a new user
+    - __POST__ not started
+  type: 
+    collection:
+      example-collection: |
+      example-member: &user |
+        {
+          "success": true,
+          "data": {
+            "id": 1,
+            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZXhwIjoxNDM0NDY3NDUxfQ.Or5WanRwK1WRqqf4oeIkAHRYgNyRssM3CCplZobxr4w",
+            "email": "andre@orainteractive.com"
+          }
+        }
+  post:
+    is: [ json ]
+    body:
+      application/x-www-form-urlencoded:
+        formParameters:
+          email:
+            type: string
+            example: andre@orainteractive.com
+            required: true
+          password:
+            type: string
+            example: Test123
+            required: true
+          confirm_password:
+            type: string
+            example: Test123
+            required: true
+    responses:
+      200:
+        body:
+          application/json:
+            example: *user
+  /_current:
+    description: |
+      Can only be used by the logged in user to access / modify his own information OR For a user to login via POST
+    type:
+      member:
+        example-member: *user
+    post:
+      is: [ json ]
+      description: Login endpoint
+      body:
+        application/x-www-form-urlencoded:
+          formParameters:
+            email:
+              type: string
+              example: andre@orainteractive.com
+              required: true
+            password:
+              type: string
+              example: Test123
+              required: true
+      responses:
+        200:
+          body:
+            application/json:
+              example: *user
+        412:
+          description:
+            Precondition failed - Often missing a required parameter.
+          body:
+            application/json:
+              schema: error
+              example: |
+                {
+                  "error": {
+                    "code": "412",
+                    "url": "/api/users.json",
+                    "message": "Please enter an email." 
+                  }
+                }
+        401:
+          description:
+            Unauthorized - Authentication credentials were missing, incorrect, or insufficient.
+            Possible Facebook access token error.
+          body:
+            application/json:
+              example: |
+                {
+                  "error": {
+                    "code": "401",
+                    "url": "/api/users.json",
+                    "message": "You do not have access to this endpoint."
+                  }
+                }
+    get:
+      is: [ secured, json ]
+    put:
+      is: [ secured, json ]
+      body:
+        application/x-www-form-urlencoded:
+          formParameters:
+            email:
+              type: string
+              example: andre@orainteractive.com
+              required: true
+            password:
+              type: string
+              example: Test123
+              required: true
+      responses:
+        200:
+          body:
+            application/json:
+              example: *user
+    /chats:
+      description: |
+        View a list of all chats created by the current user
+      type: 
+        collection:
+          example-collection: &chats |
+            {
+              "success": true,
+              "data": [
+                {
+                  "id": 1,
+                  "user_id": 1,
+                  "name": "A Chat"
+                }
+              ],
+              "pagination": {
+                "page_count": 1,
+                "current_page": 1,
+                "has_next_page": false,
+                "has_prev_page": false,
+                "count": 1,
+                "limit": null
+              }
+            }
+          example-member: &chat |
+            {
+              "success": true,
+              "data": {
+                "id": 1,
+                "user_id": 1,
+                "name": "A Chat"
+              }
+            }
+      get:
+        is: [ secured,json, paged ]
+        responses:
+          200:
+            body:
+              application/json:
+                example: *chats
+/chats:
+  description: |
+    View a list of all chats
+  type: 
+    collection:
+      example-collection: *chats
+      example-member: *chat
+  get:
+    is: [ secured, json, paged ]
+    responses:
+      200:
+        body:
+          application/json:
+            example: *chats
+  post:
+    is: [ secured, json ]
+    body:
+      application/x-www-form-urlencoded:
+        formParameters:
+          name:
+            type: string
+            example: A Chat
+            required: true
+    responses:
+      200:
+        body:
+          application/json:
+            example: *chat
+  /{chat_id}:
+    type:
+      member:
+        example-member: |
+    uriParameters:
+      chat_id:
+        type: integer
+        example: 1
+    get:
+      is: [ secured, json ]
+      responses:
+        200:
+          body:
+            application/json:
+              example: *chat
+    post:
+      is: [ secured, json ]
+      body:
+        application/x-www-form-urlencoded:
+          formParameters:
+            name:
+              type: string
+              example: A Chat
+              required: true
+      responses:
+        200:
+          body:
+            application/json:
+              example: *chat
+    /chat_messages:
+      type: 
+        collection:
+          example-collection: &messages |
+            {
+              "success": true,
+              "data": [
+                {
+                  "id": 1,
+                  "chat_id": 1,
+                  "user_id": 1,
+                  "message": "Hey there!",
+                  "user": {
+                    "id": 1,
+                    "name": "Andre Sugai"
+                  }
+                },
+                {
+                  "id": 2,
+                  "chat_id": 1,
+                  "user_id": 2,
+                  "message": "Oh hey!",
+                  "user": {
+                    "id": 2,
+                    "name": "Dan Parsons"
+                  }
+                }
+              ],
+              "pagination": {
+                "page_count": 1,
+                "current_page": 1,
+                "has_next_page": false,
+                "has_prev_page": false,
+                "count": 1,
+                "limit": null
+              }
+            }
+          example-member: |
+      description: |
+        Get the list of questions for a quiz
+      get:
+        is: [ secured, json, paged ]
+        responses:
+          200:
+            body:
+              application/json:
+                example: *messages
+      post:
+        description: |
+          Post a new message to a chat
+        is: [ secured, json ]
+        body:
+          application/x-www-form-urlencoded:
+            formParameters:
+              message:
+                type: string
+                example: Hey there!
+                required: true
 traits:
   - paged:
       queryParameters:
@@ -24,6 +290,13 @@ traits:
           description: |
             A valid JWT token is required
           example: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZXhwIjoxNDM0NDY3NDUxfQ.Or5WanRwK1WRqqf4oeIkAHRYgNyRssM3CCplZobxr4w
+          required: true
+  - json:
+      headers:
+        Accept:
+          description: |
+            Return type for data encoding
+          example: application/json
           required: true
 resourceTypes:
   - base:
@@ -156,267 +429,3 @@ resourceTypes:
                       "message": "You do not have access to this endpoint."
                     }
                   }
-/users:
-  description: |
-    Use the POST call to register a new user
-    - __POST__ not started
-  type: 
-    collection:
-      example-collection: |
-      example-member: &user |
-        {
-          "success": true,
-          "data": {
-            "id": 1,
-            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZXhwIjoxNDM0NDY3NDUxfQ.Or5WanRwK1WRqqf4oeIkAHRYgNyRssM3CCplZobxr4w",
-            "email": "andre@orainteractive.com"
-          }
-        }
-  post:
-    body:
-      application/x-www-form-urlencoded:
-        formParameters:
-          email:
-            type: string
-            example: andre@orainteractive.com
-            required: true
-          password:
-            type: string
-            example: Test123
-            required: true
-          confirm_password:
-            type: string
-            example: Test123
-            required: true
-    responses:
-      200:
-        body:
-          application/json:
-            example: *user
-  /_current:
-    description: |
-      Can only be used by the logged in user to access / modify his own information OR For a user to login via POST
-    type:
-      member:
-        example-member: *user
-    post:
-      description: Login endpoint
-      body:
-        application/x-www-form-urlencoded:
-          formParameters:
-            email:
-              type: string
-              example: andre@orainteractive.com
-              required: true
-            password:
-              type: string
-              example: Test123
-              required: true
-      responses:
-        200:
-          body:
-            application/json:
-              example: *user
-        412:
-          description:
-            Precondition failed - Often missing a required parameter.
-          body:
-            application/json:
-              schema: error
-              example: |
-                {
-                  "error": {
-                    "code": "412",
-                    "url": "/api/users.json",
-                    "message": "Please enter an email." 
-                  }
-                }
-        401:
-          description:
-            Unauthorized - Authentication credentials were missing, incorrect, or insufficient.
-            Possible Facebook access token error.
-          body:
-            application/json:
-              example: |
-                {
-                  "error": {
-                    "code": "401",
-                    "url": "/api/users.json",
-                    "message": "You do not have access to this endpoint."
-                  }
-                }
-    get:
-      is: [ secured ]
-    put:
-      is: [ secured ]
-      body:
-        application/x-www-form-urlencoded:
-          formParameters:
-            email:
-              type: string
-              example: andre@orainteractive.com
-              required: true
-            password:
-              type: string
-              example: Test123
-              required: true
-      responses:
-        200:
-          body:
-            application/json:
-              example: *user
-    /chats:
-      description: |
-        View a list of all chats created by the current user
-      type: 
-        collection:
-          example-collection: &chats |
-            {
-              "success": true,
-              "data": [
-                {
-                  "id": 1,
-                  "user_id": 1,
-                  "name": "A Chat"
-                }
-              ],
-              "pagination": {
-                "page_count": 1,
-                "current_page": 1,
-                "has_next_page": false,
-                "has_prev_page": false,
-                "count": 1,
-                "limit": null
-              }
-            }
-          example-member: &chat |
-            {
-              "success": true,
-              "data": {
-                "id": 1,
-                "user_id": 1,
-                "name": "A Chat"
-              }
-            }
-      get:
-        is: [ secured, paged ]
-        responses:
-          200:
-            body:
-              application/json:
-                example: *chats
-/chats:
-  description: |
-    View a list of all chats
-  type: 
-    collection:
-      example-collection: *chats
-      example-member: *chat
-  get:
-    is: [ secured, paged ]
-    responses:
-      200:
-        body:
-          application/json:
-            example: *chats
-  post:
-    is: [ secured ]
-    body:
-      application/x-www-form-urlencoded:
-        formParameters:
-          name:
-            type: string
-            example: A Chat
-            required: true
-    responses:
-      200:
-        body:
-          application/json:
-            example: *chat
-  /{chat_id}:
-    type:
-      member:
-        example-member: |
-    uriParameters:
-      chat_id:
-        type: integer
-        example: 1
-    get:
-      is: [ secured ]
-      responses:
-        200:
-          body:
-            application/json:
-              example: *chat
-    post:
-      is: [ secured ]
-      body:
-        application/x-www-form-urlencoded:
-          formParameters:
-            name:
-              type: string
-              example: A Chat
-              required: true
-      responses:
-        200:
-          body:
-            application/json:
-              example: *chat
-    /chat_messages:
-      type: 
-        collection:
-          example-collection: &messages |
-            {
-              "success": true,
-              "data": [
-                {
-                  "id": 1,
-                  "chat_id": 1,
-                  "user_id": 1,
-                  "message": "Hey there!",
-                  "user": {
-                    "id": 1,
-                    "name": "Andre Sugai"
-                  }
-                },
-                {
-                  "id": 2,
-                  "chat_id": 1,
-                  "user_id": 2,
-                  "message": "Oh hey!",
-                  "user": {
-                    "id": 2,
-                    "name": "Dan Parsons"
-                  }
-                }
-              ],
-              "pagination": {
-                "page_count": 1,
-                "current_page": 1,
-                "has_next_page": false,
-                "has_prev_page": false,
-                "count": 1,
-                "limit": null
-              }
-            }
-          example-member: |
-      description: |
-        Get the list of questions for a quiz
-      get:
-        is: [ secured, paged ]
-        responses:
-          200:
-            body:
-              application/json:
-                example: *messages
-      post:
-        description: |
-          Post a new message to a chat
-        is: [ secured ]
-        body:
-          application/x-www-form-urlencoded:
-            formParameters:
-              message:
-                type: string
-                example: Hey there!
-                required: true
