@@ -1,5 +1,5 @@
 #%RAML 0.8
-baseUri: http://challengers.orainteractive.com/
+baseUri: http://raml.orainteractive.com:5050
 title: CodeChallenge
 version: v1
 mediaType: application/json
@@ -41,12 +41,7 @@ mediaType: application/json
         body:
           application/json:
             example: *user
-  /_current:
-    description: |
-      Can only be used by the logged in user to access / modify his own information OR For a user to login via POST
-    type:
-      member:
-        example-member: *user
+  /login:
     post:
       is: [ json ]
       description: Login endpoint
@@ -94,6 +89,12 @@ mediaType: application/json
                     "message": "You do not have access to this endpoint."
                   }
                 }
+  /_current:
+    description: |
+      Can only be used by the logged in user to access / modify his own information OR For a user to login via POST
+    type:
+      member:
+        example-member: *user
     get:
       is: [ secured, json ]
     put:
