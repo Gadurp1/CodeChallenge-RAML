@@ -115,53 +115,39 @@ mediaType: application/json
           body:
             application/json:
               example: *user
-    /chats:
-      description: |
-        View a list of all chats created by the current user
-      type: 
-        collection:
-          example-collection: &chats |
-            {
-              "success": true,
-              "data": [
-                {
-                  "id": 1,
-                  "user_id": 1,
-                  "name": "A Chat"
-                }
-              ],
-              "pagination": {
-                "page_count": 1,
-                "current_page": 1,
-                "has_next_page": false,
-                "has_prev_page": false,
-                "count": 1,
-                "limit": null
-              }
-            }
-          example-member: &chat |
-            {
-              "success": true,
-              "data": {
-                "id": 1,
-                "user_id": 1,
-                "name": "A Chat"
-              }
-            }
-      get:
-        is: [ secured,json, paged ]
-        responses:
-          200:
-            body:
-              application/json:
-                example: *chats
 /chats:
   description: |
     View a list of all chats
   type: 
     collection:
-      example-collection: *chats
-      example-member: *chat
+      example-collection: &chats |
+        {
+          "success": true,
+          "data": [
+            {
+              "id": 1,
+              "user_id": 1,
+              "name": "A Chat"
+            }
+          ],
+          "pagination": {
+            "page_count": 1,
+            "current_page": 1,
+            "has_next_page": false,
+            "has_prev_page": false,
+            "count": 1,
+            "limit": null
+          }
+        }
+      example-member: &chat |
+        {
+          "success": true,
+          "data": {
+            "id": 1,
+            "user_id": 1,
+            "name": "A Chat"
+          }
+        }
   get:
     is: [ secured, json, paged ]
     responses:
@@ -401,3 +387,53 @@ resourceTypes:
                       "message": "You do not have access to this endpoint."
                     }
                   }
+documentation:
+  - title: Home
+    content: |
+      ###Code Challenge-RAML
+
+      RAML documentation for Ora's Code Challenge API Service
+
+      Version 2.0
+      Compiled by Andre Sugai
+
+      ###Introduction
+
+      This API documentation is written in RAML and was produced for the benefit of the Ora Code Challenge participants
+  - title: The Challenge
+    content: |
+      ###Description
+      The API describes a simple chat application.
+      
+      A user can: 
+      - register
+      - login
+      - view their profile
+      - edit their profile
+      - list all chats
+      - create a chat
+      - view all messages in a chat
+      - create a message in a chat
+      
+      How much or how little development time you spend on the code challenge is up to you - we are simply looking for something that exemplifies your work.
+      
+      __iOS and Android__
+      
+      Your challenge is to build a small application following best practices that interacts with the API specified in the RAML file.
+     
+      __PHP__
+      
+      Your challenge is to build the API specified in the RAML file using PHP and the framework of your choice.
+      
+      __Note__
+      
+      All submissions should be accompanied by any necessary deployment or compilation instructions.
+      
+      ###Time limit
+      Your time limit is 5 days after the you receive this challenge.
+      
+      ###Standards
+      Use best practices for coding style, testing, etc.
+      
+      ###Plugins and Reusable Code
+      Use plugins as needed, any plugin used should also follow stardards.
