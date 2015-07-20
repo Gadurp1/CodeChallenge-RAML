@@ -15,7 +15,8 @@ mediaType: application/json
           "data": {
             "id": 1,
             "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZXhwIjoxNDM0NDY3NDUxfQ.Or5WanRwK1WRqqf4oeIkAHRYgNyRssM3CCplZobxr4w",
-            "email": "andre@orainteractive.com"
+            "email": "andre@orainteractive.com",
+            "name": "andre"
           }
         }
   post:
@@ -26,6 +27,10 @@ mediaType: application/json
           email:
             type: string
             example: andre@orainteractive.com
+            required: true
+          name:
+            type: string
+            example: andre
             required: true
           password:
             type: string
@@ -103,11 +108,12 @@ mediaType: application/json
             email:
               type: string
               example: andre@orainteractive.com
-              required: true
+            name:
+              type: string
+              example: andre
             password:
               type: string
               example: Test123
-              required: true
       responses:
         200:
           body:
@@ -185,7 +191,7 @@ mediaType: application/json
                 "message": "Hey there!",
                 "user": {
                   "id": 1,
-                  "name": "Andre Sugai"
+                  "name": "andre"
                 }
               },
               {
@@ -195,7 +201,7 @@ mediaType: application/json
                 "message": "Oh hey!",
                 "user": {
                   "id": 2,
-                  "name": "Dan Parsons"
+                  "name": "dan"
                 }
               }
             ],
@@ -208,7 +214,20 @@ mediaType: application/json
               "limit": null
             }
           }
-        example-member: |
+        example-member: &message |
+          {
+            "success": true,
+            "data": {
+              "id": 1,
+              "chat_id": 1,
+              "user_id": 1,
+              "message": "Hey there!",
+              "user": {
+                "id": 1,
+                "name": "andre"
+              }
+            }
+          }
     get:
       is: [ secured, json, paged ]
       responses:
@@ -227,6 +246,11 @@ mediaType: application/json
               type: string
               example: Hey there!
               required: true
+      responses:
+        200:
+          body:
+            application/json:
+              example: *message
 traits:
   - paged:
       queryParameters:
@@ -394,10 +418,9 @@ documentation:
       
       RAML documentation for Ora's Code Challenge API Service
       
-      Version 2.0
-      Compiled by Andre Sugai
+      __Version 2.0 - Compiled by Andre Sugai__
       
-      This API documentation is written in RAML and was produced for the benefit of the Ora Code Challenge participants
+      Questions or comments? Email [andre@orainteractive.com](mailto:andre@orainteractive.com)
   - title: The Challenge
     content: |
       ###Description
@@ -423,7 +446,7 @@ documentation:
       
       ###UI
       
-      Please use 
+      - [Android](https://www.dropbox.com/s/7bnxed58z4cb4kg/InstaChat.zip?dl=0)
       
       ###Note
       
