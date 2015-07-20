@@ -1,5 +1,5 @@
 #%RAML 0.8
-baseUri: http://raml.orainteractive.com:5050
+baseUri: http://raml.orainteractive.com:8081
 title: CodeChallenge
 version: v1
 mediaType: application/json
@@ -183,93 +183,64 @@ mediaType: application/json
         body:
           application/json:
             example: *chat
-  /{chat_id}:
-    type:
-      member:
+  /{chat_id}/chat_messages:
+    type: 
+      collection:
+        example-collection: &messages |
+          {
+            "success": true,
+            "data": [
+              {
+                "id": 1,
+                "chat_id": 1,
+                "user_id": 1,
+                "message": "Hey there!",
+                "user": {
+                  "id": 1,
+                  "name": "Andre Sugai"
+                }
+              },
+              {
+                "id": 2,
+                "chat_id": 1,
+                "user_id": 2,
+                "message": "Oh hey!",
+                "user": {
+                  "id": 2,
+                  "name": "Dan Parsons"
+                }
+              }
+            ],
+            "pagination": {
+              "page_count": 1,
+              "current_page": 1,
+              "has_next_page": false,
+              "has_prev_page": false,
+              "count": 1,
+              "limit": null
+            }
+          }
         example-member: |
-    uriParameters:
-      chat_id:
-        type: integer
-        example: 1
+    description: |
+      Get the list of questions for a quiz
     get:
-      is: [ secured, json ]
+      is: [ secured, json, paged ]
       responses:
         200:
           body:
             application/json:
-              example: *chat
+              example: *messages
     post:
+      description: |
+        Post a new message to a chat
       is: [ secured, json ]
       body:
         application/x-www-form-urlencoded:
           formParameters:
-            name:
+            message:
               type: string
-              example: A Chat
+              example: Hey there!
               required: true
-      responses:
-        200:
-          body:
-            application/json:
-              example: *chat
-    /chat_messages:
-      type: 
-        collection:
-          example-collection: &messages |
-            {
-              "success": true,
-              "data": [
-                {
-                  "id": 1,
-                  "chat_id": 1,
-                  "user_id": 1,
-                  "message": "Hey there!",
-                  "user": {
-                    "id": 1,
-                    "name": "Andre Sugai"
-                  }
-                },
-                {
-                  "id": 2,
-                  "chat_id": 1,
-                  "user_id": 2,
-                  "message": "Oh hey!",
-                  "user": {
-                    "id": 2,
-                    "name": "Dan Parsons"
-                  }
-                }
-              ],
-              "pagination": {
-                "page_count": 1,
-                "current_page": 1,
-                "has_next_page": false,
-                "has_prev_page": false,
-                "count": 1,
-                "limit": null
-              }
-            }
-          example-member: |
-      description: |
-        Get the list of questions for a quiz
-      get:
-        is: [ secured, json, paged ]
-        responses:
-          200:
-            body:
-              application/json:
-                example: *messages
-      post:
-        description: |
-          Post a new message to a chat
-        is: [ secured, json ]
-        body:
-          application/x-www-form-urlencoded:
-            formParameters:
-              message:
-                type: string
-                example: Hey there!
-                required: true
 traits:
   - paged:
       queryParameters:
