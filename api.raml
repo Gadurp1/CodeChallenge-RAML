@@ -4,8 +4,6 @@ title: CodeChallenge
 version: v2
 mediaType: application/json
 /users:
-  description: |
-    - POST: Register
   type: 
     collection:
       example-collection: |
@@ -21,6 +19,7 @@ mediaType: application/json
         }
   post:
     is: [ json ]
+    description: Registration endpoint
     body:
       application/x-www-form-urlencoded:
         formParameters:
@@ -42,8 +41,6 @@ mediaType: application/json
           application/json:
             example: *user
   /login:
-    description: |
-      - POST: Login
     post:
       is: [ json ]
       description: Login endpoint
@@ -92,16 +89,15 @@ mediaType: application/json
                   }
                 }
   /_current:
-    description: |
-      - GET: Profile view
-      - POST: Profile edit
     type:
       member:
         example-member: *user
     get:
       is: [ secured, json ]
+      description: Profile view endpoint
     put:
       is: [ secured, json ]
+      description: Profile edit endpoint
       body:
         application/x-www-form-urlencoded:
           formParameters:
@@ -120,9 +116,6 @@ mediaType: application/json
             application/json:
               example: *user
 /chats:
-  description: |
-    - GET: Chat list
-    - POST: Chat create
   type: 
     collection:
       example-collection: &chats |
@@ -155,6 +148,7 @@ mediaType: application/json
         }
   get:
     is: [ secured, json, paged ]
+    description: Chat list endpoint
     responses:
       200:
         body:
@@ -162,6 +156,7 @@ mediaType: application/json
             example: *chats
   post:
     is: [ secured, json ]
+    description: Chat create endpoint
     body:
       application/x-www-form-urlencoded:
         formParameters:
@@ -175,9 +170,6 @@ mediaType: application/json
           application/json:
             example: *chat
   /{chat_id}/messages:
-    description: |
-      - GET: Chat Messages view
-      - POST: Chat Message create
     type: 
       collection:
         example-collection: &messages |
@@ -230,15 +222,15 @@ mediaType: application/json
           }
     get:
       is: [ secured, json, paged ]
+      description: Messages list endpoint
       responses:
         200:
           body:
             application/json:
               example: *messages
     post:
-      description: |
-        Post a new message to a chat
       is: [ secured, json ]
+      description: Message create endpoint
       body:
         application/x-www-form-urlencoded:
           formParameters:
@@ -414,7 +406,7 @@ resourceTypes:
 documentation:
   - title: 1. Introduction
     content: |
-      ###Code Challenge-RAML
+      ####Code Challenge-RAML
       
       RAML documentation for Ora's Code Challenge API Service
       
@@ -423,7 +415,7 @@ documentation:
       Questions or comments? Email [andre@orainteractive.com](mailto:andre@orainteractive.com)
   - title: 2. The Challenge
     content: |
-      ###Description
+      ####Description
       The API describes a simple chat application.
       
       A user can: 
@@ -439,7 +431,7 @@ documentation:
       How much or how little development time you spend on the code challenge is up to you - we are simply looking for something that exemplifies your work.
   - title: 3. Requirements
     content: |
-      ##iOS and Android
+      ####iOS and Android
       Your challenge is to build a small application following best practices that interacts with the API specified in the RAML file.
       
       A mock API can be found here:  ``http://raml.orainteractive.com:8081``
@@ -448,14 +440,14 @@ documentation:
       - [Android](https://www.dropbox.com/s/7bnxed58z4cb4kg/InstaChat.zip?dl=0)
       - iOS coming soon - use Android in the meantime as basis
         
-      ##PHP
+      ####PHP
       Your challenge is to build the API specified in the RAML file using PHP in the framework of your choice.
       
       We recommend these frameworks:
       - [CakePHP](cakephp.org)
       - [Laraval](http://laravel.com/)
       
-      ###Note
+      #####Note
       
       All submissions should be accompanied by any necessary compilation or deployment instructions.
   - title: 4. Time limit
