@@ -6,6 +6,28 @@ HOST: http://polls.apiblueprint.org/
 ## Users Collection [/users]
 
 ### Create a New User [POST]
++ Request (application/json)
+
+        { 
+            "email": "andre@orainteractive.com",
+            "password": "test123",
+            "confirm": "test123"
+        }
+
++ Response 201 (application/json)
+
+        {
+            "success": true,
+            "data": {
+                "id": 1,
+                "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZXhwIjoxNDM0NDY3NDUxfQ.Or5WanRwK1WRqqf4oeIkAHRYgNyRssM3CCplZobxr4w",
+                "email": "andre@orainteractive.com"
+            }
+        }
+            
+## User Login [/user/login]
+
+### Login a User [POST]
 
 + Request (application/json)
     
@@ -17,8 +39,7 @@ HOST: http://polls.apiblueprint.org/
 
             {
                 "email": "andre@orainteractive.com",
-                "password": "test123",
-                "confirm": "test123"
+                "password": "test123"
             }
 
 + Response 201 (application/json)
@@ -33,11 +54,9 @@ HOST: http://polls.apiblueprint.org/
                     "email": "andre@orainteractive.com"
                 }
             }
-            
-## User Login [/user/login]
 
+## User [/user/login]
 ### Login a User [POST]
-
 + Request (application/json)
     
     + Headers
