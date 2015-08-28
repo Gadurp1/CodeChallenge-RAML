@@ -115,7 +115,13 @@ HOST: http://polls.apiblueprint.org/
 
             Accept: application/json
             Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZXhwIjoxNDM0NDY3NDUxfQ.Or5WanRwK1WRqqf4oeIkAHRYgNyRssM3CCplZobxr4w
-            
+
+    + Body
+    
+            { 
+                "page": 1,
+                "limit": 20
+            } 
 
 + Response 200 (application/json)
 
