@@ -173,7 +173,7 @@ HOST: http://polls.apiblueprint.org/
 + Parameters
     + chat_id (required, number, `1`) ... Numeric `id` of the Note to perform action with. Has example value.
     
-### List Chats [GET]
+### List Messages [GET]
 + Request (application/json)
     
     + Headers
@@ -188,25 +188,35 @@ HOST: http://polls.apiblueprint.org/
             "success": true,
             "data": [{
                 "id": 1,
+                "chat_id": 1,
                 "user_id": 1,
-                "name": "A Chat"
+                "message": "Hey there!",
+                "user": {
+                    "id": 1,
+                    "name": "andre"
+                }
             },
             {
               "id": 2,
-              "user_id": 1,
-              "name": "A Chat 2"
+              "chat_id": 1,
+              "user_id": 2,
+              "message": "Oh hey!",
+              "user": {
+                "id": 2,
+                "name": "dan"
+              }
             }],
             "pagination": {
                 "page_count": 1,
                 "current_page": 1,
                 "has_next_page": false,
                 "has_prev_page": false,
-                "count": 1,
+                "count": 2,
                 "limit": null
             }
         }
 
-### Create a New Chat [POST]
+### Create a New Message [POST]
 + Request (application/json)
     
     + Headers
@@ -217,9 +227,7 @@ HOST: http://polls.apiblueprint.org/
     + Body
     
             { 
-                "email": "andre@orainteractive.com",
-                "password": "test123",
-                "confirm": "test123"
+                "message": "Hey there!"
             }
 
 + Response 201 (application/json)
@@ -228,7 +236,12 @@ HOST: http://polls.apiblueprint.org/
             "success": true,
             "data": {
                 "id": 1,
+                "chat_id": 1,
                 "user_id": 1,
-                "name": "A Chat"
+                "message": "Hey there!",
+                "user": {
+                "id": 1,
+                "name": "andre"
+                }
             }
         }
