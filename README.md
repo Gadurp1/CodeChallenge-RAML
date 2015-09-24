@@ -1,6 +1,8 @@
 # Code Challenge API
       
 Documentation for Ora's Code Challenge API Service
+
+For full documentation, please see the [Apiary Documentation](http://docs.testapi1394.apiary.io/#)
       
 __Version 3.0 - Compiled by Andre Sugai__
       
