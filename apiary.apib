@@ -79,7 +79,7 @@ Any plugin used should also follow stardards and best practices.
 
 ## User [/user]
 
-+ Model (application/json)
++ Model (application/json; charset=utf-8)
     
         {
           "success": true,
@@ -92,7 +92,7 @@ Any plugin used should also follow stardards and best practices.
         }
 
 ### Register [POST /users/register]
-+ Request (application/json)
++ Request (application/json; charset=utf-8)
     
     + Headers
 
@@ -112,7 +112,7 @@ Any plugin used should also follow stardards and best practices.
         
             
 ### Login [POST /users/login]
-+ Request (application/json)
++ Request (application/json; charset=utf-8)
 
     + Headers
 
@@ -130,7 +130,7 @@ Any plugin used should also follow stardards and best practices.
     [User][]
 
 ### View [GET /users/me]
-+ Request (application/json)
++ Request (application/json; charset=utf-8)
     
     + Headers
 
@@ -141,7 +141,7 @@ Any plugin used should also follow stardards and best practices.
     [User][]
 
 ### Edit [PUT /users/me]
-+ Request (application/json)
++ Request (application/json; charset=utf-8)
     
     + Headers
 
@@ -155,7 +155,7 @@ Any plugin used should also follow stardards and best practices.
                 "password": "test123"
             }
 
-+ Response 201 (application/json)
++ Response 201 (application/json; charset=utf-8)
 
         {
             "success": true,
@@ -169,7 +169,7 @@ Any plugin used should also follow stardards and best practices.
 # Chat [/chats]
 
 ### List [GET]
-+ Request (application/json)
++ Request (application/json; charset=utf-8)
     
     + Headers
 
@@ -183,7 +183,7 @@ Any plugin used should also follow stardards and best practices.
                 "limit": 20
             } 
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         {
             "success": true,
@@ -208,7 +208,7 @@ Any plugin used should also follow stardards and best practices.
         }
 
 ### Create [POST]
-+ Request (application/json)
++ Request (application/json; charset=utf-8)
     
     + Headers
 
@@ -223,7 +223,7 @@ Any plugin used should also follow stardards and best practices.
                 "confirm": "test123"
             }
 
-+ Response 201 (application/json)
++ Response 201 (application/json; charset=utf-8)
 
         {
             "success": true,
@@ -240,7 +240,7 @@ Any plugin used should also follow stardards and best practices.
     + chat_id (required, number, `1`) ... Numeric `id` of the Note to perform action with. Has example value.
     
 ### List [GET]
-+ Request (application/json)
++ Request (application/json; charset=utf-8)
     
     + Headers
 
@@ -248,7 +248,7 @@ Any plugin used should also follow stardards and best practices.
             Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZXhwIjoxNDM0NDY3NDUxfQ.Or5WanRwK1WRqqf4oeIkAHRYgNyRssM3CCplZobxr4w
             
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         {
             "success": true,
@@ -283,7 +283,7 @@ Any plugin used should also follow stardards and best practices.
         }
 
 ### Create [POST]
-+ Request (application/json)
++ Request (application/json; charset=utf-8)
     
     + Headers
 
@@ -296,7 +296,7 @@ Any plugin used should also follow stardards and best practices.
                 "message": "Hey there!"
             }
 
-+ Response 201 (application/json)
++ Response 201 (application/json; charset=utf-8)
 
         {
             "success": true,
