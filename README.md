@@ -1,8 +1,6 @@
 # Code Challenge API
       
 Documentation for Ora's Code Challenge API Service
-
-For full documentation, please see the [Apiary Documentation](http://docs.testapi1394.apiary.io/#)
       
 __Version 3.0 - Compiled by Andre Sugai__
       
@@ -37,18 +35,13 @@ All submissions should be accompanied by any necessary compilation or deployment
 
 ## Requirements
 
-### iOS and Android
+### iOS / Android / Angular
 Your challenge is to build a small application following best practices that interacts with the API specified in this document.
-
-UX for app:
-- [Android](https://www.dropbox.com/s/7bnxed58z4cb4kg/InstaChat.zip?dl=0)
-- iOS coming soon - use Android in the meantime as basis
 
 ### PHP and Ruby on Rails
 Your challenge is to build the API specified in this document using a PHP framework or Ruby on Rails.
 
 We recommend these frameworks for PHP:
-- [CakePHP](cakephp.org)
 - [Laraval](http://laravel.com/)
 - For Ruby, you should use Rails.
 
@@ -65,6 +58,7 @@ Use best practices for coding style, unit testing, etc.
 We recommend:
 - Objective C - [Programming with Objective-C Conventions](https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Conventions/Conventions.html)
 - Android - [Android Code Style Guidelines](https://source.android.com/source/code-style.html)
+- Angular - [Angular Style Guide](https://angular.io/docs/ts/latest/guide/style-guide.html)
 - PHP - [PHP-FIG](http://www.php-fig.org/)
 - Ruby on Rails - [Rails](https://github.com/bbatsov/rails-style-guide), [Ruby](https://github.com/bbatsov/ruby-style-guide)
 
