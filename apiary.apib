@@ -100,7 +100,7 @@ Any plugin used should also follow stardards and best practices.
     + Body
     
             { 
-                "name": "andre",
+                "name": "Andre",
                 "email": "andre@orainteractive.com",
                 "password": "test123",
                 "confirm": "test123"
@@ -150,23 +150,15 @@ Any plugin used should also follow stardards and best practices.
     + Body
 
             {
-                "name": "andre",
+                "name": "Andre",
                 "email": "andre@orainteractive.com",
                 "password": ""
                 "confirm": ""
             }
 
-+ Response 201 (application/json; charset=utf-8)
++ Response 201
 
-        {
-            "success": true,
-            "data": {
-                "id": 1,
-                "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZXhwIjoxNDM0NDY3NDUxfQ.Or5WanRwK1WRqqf4oeIkAHRYgNyRssM3CCplZobxr4w",
-                "email": "andre@orainteractive.com",
-                "name": "Andre"
-            }
-        }
+    [User][]
 
 # Chat [/chats]
 
@@ -263,14 +255,14 @@ Any plugin used should also follow stardards and best practices.
                 }
             },
             {
-              "id": 2,
-              "chat_id": 1,
-              "user_id": 2,
-              "message": "Oh hey!",
-              "user": {
                 "id": 2,
-                "name": "dan"
-              }
+                "chat_id": 1,
+                "user_id": 2,
+                "message": "Oh hey!",
+                "user": {
+                    "id": 2,
+                    "name": "dan"
+                }
             }],
             "pagination": {
                 "page_count": 1,
