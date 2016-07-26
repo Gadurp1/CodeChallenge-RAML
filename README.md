@@ -1,3 +1,6 @@
+FORMAT: 1A
+HOST: http://private-d9e5b-oracodechallenge.apiary-mock.com/
+
 # Code Challenge API
       
 Documentation for Ora's Code Challenge API Service
@@ -38,12 +41,13 @@ All submissions should be accompanied by any necessary compilation or deployment
 ### iOS / Android / Angular
 Your challenge is to build a small application following best practices that interacts with the API specified in this document.
 
-### PHP and Ruby on Rails
-Your challenge is to build the API specified in this document using a PHP framework or Ruby on Rails.
+### PHP / Ruby on Rails / C#
+Your challenge is to build the API specified in this document.
 
-We recommend these frameworks for PHP:
-- [Laraval](http://laravel.com/)
-- For Ruby, you should use Rails.
+- PHP: [Laraval](http://laravel.com/)
+- Ruby: [Rails](http://rubyonrails.org/)
+- C#: [Entity Framework](https://msdn.microsoft.com/en-us/data/ef.aspx?f=255&MSPPError=-2147217396)
+
 
 ## Time limit
 
@@ -61,6 +65,7 @@ We recommend:
 - Angular - [Angular Style Guide](https://angular.io/docs/ts/latest/guide/style-guide.html)
 - PHP - [PHP-FIG](http://www.php-fig.org/)
 - Ruby on Rails - [Rails](https://github.com/bbatsov/rails-style-guide), [Ruby](https://github.com/bbatsov/ruby-style-guide)
+- C# - [C# Coding Conventions](https://msdn.microsoft.com/en-us/library/ff926074.aspx)
 
 ## Packages, Plugins, and Reusable Code
 
