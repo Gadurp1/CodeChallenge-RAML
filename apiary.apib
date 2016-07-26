@@ -182,6 +182,27 @@ Any plugin used should also follow stardards and best practices.
             "success": true,
             "data": [
                 {
+                    "id": 1,
+                    "user_id": 1,
+                    "name": "A Chat",
+                    "created": "2016-07-12T04:30:21Z",
+                    "user": {
+                        "id": 1,
+                        "name": "Andre"
+                    },
+                    "last_message": {
+                        "id": 2,
+                        "user_id": 2,
+                        "chat_id": 1,
+                        "message": "Oh hey!",
+                        "created": "2016-07-16T06:30:21Z",
+                        "user": {
+                            "id": 2,
+                            "name": "Dan"
+                        }
+                    }
+                },
+                {
                     "id": 2,
                     "user_id": 1,
                     "name": "A Chat 2",
@@ -199,27 +220,6 @@ Any plugin used should also follow stardards and best practices.
                         "user": {
                             "id": 1,
                             "name": "Andre"
-                        }
-                    }
-                },
-                {
-                    "id": 1,
-                    "user_id": 1,
-                    "name": "A Chat",
-                    "created": "2016-07-12T04:30:21Z",
-                    "user": {
-                        "id": 1,
-                        "name": "Andre"
-                    },
-                    "last_message": {
-                        "id": 2,
-                        "user_id": 2,
-                        "chat_id": 1,
-                        "message": "Oh hey!",
-                        "created": "2016-07-12T06:30:21Z",
-                        "user": {
-                            "id": 2,
-                            "name": "Dan"
                         }
                     }
                 }
@@ -290,17 +290,6 @@ Any plugin used should also follow stardards and best practices.
             "success": true,
             "data": [
                 {
-                    "id": 1,
-                    "chat_id": 1,
-                    "user_id": 1,
-                    "message": "Hey there!",
-                    "created": "2016-07-12T04:32:21Z",
-                    "user": {
-                        "id": 1,
-                        "name": "Andre"
-                    }
-                },
-                {
                     "id": 2,
                     "chat_id": 1,
                     "user_id": 2,
@@ -309,6 +298,17 @@ Any plugin used should also follow stardards and best practices.
                     "user": {
                         "id": 2,
                         "name": "Dan"
+                    }
+                },
+                {
+                    "id": 1,
+                    "chat_id": 1,
+                    "user_id": 1,
+                    "message": "Hey there!",
+                    "created": "2016-07-12T04:32:21Z",
+                    "user": {
+                        "id": 1,
+                        "name": "Andre"
                     }
                 }
             ],
