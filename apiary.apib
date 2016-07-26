@@ -162,20 +162,19 @@ Any plugin used should also follow stardards and best practices.
 
 # Chat [/chats]
 
-### List [GET]
+### List [GET /chats?q={q}&page={page)&limit={limit}]
+
++ Parameters
+    + q: `Chat` (string, optional) - a search query for the name
+    + page: `1` (string, optional) - page of list
+    + limit: `20` (number, optional) - limit per page
+    
 + Request (application/json; charset=utf-8)
     
     + Headers
 
             Accept: application/json
             Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZXhwIjoxNDM0NDY3NDUxfQ.Or5WanRwK1WRqqf4oeIkAHRYgNyRssM3CCplZobxr4w
-
-    + Body
-    
-            { 
-                "page": 1,
-                "limit": 20
-            } 
 
 + Response 200 (application/json; charset=utf-8)
 
@@ -261,7 +260,12 @@ Any plugin used should also follow stardards and best practices.
 + Parameters
     + chat_id (required, number, `1`) ... Numeric `id` of the Note to perform action with. Has example value.
 
-### List [GET]
+### List [GET /chats/{chat_id}/messages?page={page)&limit={limit}]
+
++ Parameters
+    + page: `1` (string, optional) - page of list
+    + limit: `20` (number, optional) - limit per page
+
 + Request (application/json; charset=utf-8)
     
     + Headers
