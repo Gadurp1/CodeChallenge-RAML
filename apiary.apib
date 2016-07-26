@@ -162,20 +162,19 @@ Any plugin used should also follow stardards and best practices.
 
 # Chat [/chats]
 
-### List [GET]
+### List [GET /chats?q={q}&page={page}&limit={limit}]
+
++ Parameters
+    + q: `Chat` (string, optional) - a search query for the name
+    + page: `1` (string, optional) - page of list
+    + limit: `20` (number, optional) - limit per page
+    
 + Request (application/json; charset=utf-8)
     
     + Headers
 
             Accept: application/json
             Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZXhwIjoxNDM0NDY3NDUxfQ.Or5WanRwK1WRqqf4oeIkAHRYgNyRssM3CCplZobxr4w
-
-    + Body
-    
-            { 
-                "page": 1,
-                "limit": 20
-            } 
 
 + Response 200 (application/json; charset=utf-8)
 
@@ -186,13 +185,43 @@ Any plugin used should also follow stardards and best practices.
                     "id": 1,
                     "user_id": 1,
                     "name": "A Chat",
-                    "created": "2016-07-12T04:30:21Z"
+                    "created": "2016-07-12T04:30:21Z",
+                    "user": {
+                        "id": 1,
+                        "name": "Andre"
+                    },
+                    "last_message": {
+                        "id": 2,
+                        "user_id": 2,
+                        "chat_id": 1,
+                        "message": "Oh hey!",
+                        "created": "2016-07-16T06:30:21Z",
+                        "user": {
+                            "id": 2,
+                            "name": "Dan"
+                        }
+                    }
                 },
                 {
                     "id": 2,
                     "user_id": 1,
                     "name": "A Chat 2",
-                    "created": "2016-07-14T12:30:21Z"
+                    "created": "2016-07-14T12:30:21Z",
+                    "user": {
+                        "id": 2,
+                        "name": "Dan"
+                    },
+                    "last_message": {
+                        "id": 4,
+                        "user_id": 1,
+                        "chat_id": 2,
+                        "message": "Oh man!",
+                        "created": "2016-07-14T09:30:21Z",
+                        "user": {
+                            "id": 1,
+                            "name": "Andre"
+                        }
+                    }
                 }
             ],
             "pagination": {
@@ -227,7 +256,12 @@ Any plugin used should also follow stardards and best practices.
                 "id": 1,
                 "user_id": 1,
                 "name": "A Chat",
-                "created": "2016-07-12T04:30:21Z"
+                "created": "2016-07-12T04:30:21Z",
+                "user": {
+                    "id": 1,
+                    "name": "Andre"
+                },
+                "last_message": null
             }
         }
         
@@ -236,7 +270,12 @@ Any plugin used should also follow stardards and best practices.
 + Parameters
     + chat_id (required, number, `1`) ... Numeric `id` of the Note to perform action with. Has example value.
 
-### List [GET]
+### List [GET /chats/{chat_id}/messages?page={page)&limit={limit}]
+
++ Parameters
+    + page: `1` (string, optional) - page of list
+    + limit: `20` (number, optional) - limit per page
+
 + Request (application/json; charset=utf-8)
     
     + Headers
@@ -251,17 +290,6 @@ Any plugin used should also follow stardards and best practices.
             "success": true,
             "data": [
                 {
-                    "id": 1,
-                    "chat_id": 1,
-                    "user_id": 1,
-                    "message": "Hey there!",
-                    "created": "2016-07-12T04:32:21Z",
-                    "user": {
-                        "id": 1,
-                        "name": "Andre"
-                    }
-                },
-                {
                     "id": 2,
                     "chat_id": 1,
                     "user_id": 2,
@@ -270,6 +298,17 @@ Any plugin used should also follow stardards and best practices.
                     "user": {
                         "id": 2,
                         "name": "Dan"
+                    }
+                },
+                {
+                    "id": 1,
+                    "chat_id": 1,
+                    "user_id": 1,
+                    "message": "Hey there!",
+                    "created": "2016-07-12T04:32:21Z",
+                    "user": {
+                        "id": 1,
+                        "name": "Andre"
                     }
                 }
             ],
