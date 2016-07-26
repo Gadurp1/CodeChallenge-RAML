@@ -1,6 +1,3 @@
-FORMAT: 1A
-HOST: http://private-d9e5b-oracodechallenge.apiary-mock.com/
-
 # Code Challenge API
       
 Documentation for Ora's Code Challenge API Service
